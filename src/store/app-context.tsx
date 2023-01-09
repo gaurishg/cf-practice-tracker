@@ -1,3 +1,4 @@
+import { PaletteMode } from "@mui/material";
 import {
   createContext,
   FC,
@@ -14,11 +15,15 @@ export interface AppContextInterface {
   usersProblems: {
     solved: Set<string>;
   };
+  theme: PaletteMode;
+  dataLoaded: boolean;
 }
 
 const defaultCtx: AppContextInterface = {
   problems: {},
   usersProblems: { solved: new Set<string>() },
+  theme: "dark",
+  dataLoaded: false,
 };
 
 export const AppCtx = createContext<AppContextInterface>(defaultCtx);
@@ -27,10 +32,7 @@ export const AppContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState] = useState<AppContextInterface>(defaultCtx);
   const [userHandle, setUserHandle] = useState("JohnnyTest");
   useEffect(() => {
-    const newCtx: AppContextInterface = {
-      problems: {},
-      usersProblems: { solved: new Set() },
-    };
+    const newCtx: AppContextInterface = defaultCtx;
     Promise.all([getAllProblems(), getProblemsSolvedByUser(userHandle)]).then(
       ([problems, problemsByUser]) => {
         for (const problem of problems) {
@@ -38,7 +40,7 @@ export const AppContextProvider: FC<PropsWithChildren> = ({ children }) => {
         } // for loop ends
         newCtx.usersProblems.solved = problemsByUser;
         setState(function (oldState) {
-          return { ...oldState, ...newCtx };
+          return { ...oldState, ...newCtx, dataLoaded: true };
         });
       }
     );
