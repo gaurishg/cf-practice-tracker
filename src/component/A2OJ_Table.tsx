@@ -10,7 +10,6 @@ import { MyProblem } from "../common/types";
 import { useAppContext } from "../store/app-context";
 
 interface Props {
-  title: string;
   problem_ids: string[];
 }
 
@@ -39,7 +38,7 @@ const A2OJ_TableRow: React.FC<RowProps> = (props) => {
   );
 };
 
-export const A2OJ_Table: React.FC<Props> = ({ title, problem_ids }) => {
+export const A2OJ_Table: React.FC<Props> = ({ problem_ids }) => {
   const ctx = useAppContext();
 
   return (
