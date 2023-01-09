@@ -3,6 +3,7 @@ export interface MyProblem {
   name: string;
   level: MyProblemLevel;
   points?: number;
+  rating?: number;
   tags: Set<string>;
 }
 

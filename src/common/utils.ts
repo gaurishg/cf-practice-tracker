@@ -69,6 +69,7 @@ function CFProblem2MyProblem(cf_problem: Problem): MyProblem {
     tags: new Set(cf_problem.tags || []),
     points: cf_problem.points,
     level: getProblemLevelFromProblemIndex(cf_problem.index),
+    rating: cf_problem.rating,
   };
 }
 
