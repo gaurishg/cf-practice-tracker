@@ -4600,6 +4600,89 @@ export const DIV_2E_NEW = [
   "975E",
 ];
 
+export type A2OJProblemSetIds =
+  | "div_2a_old"
+  | "div_2b_old"
+  | "div_2c_old"
+  | "div_2d_old"
+  | "div_2e_old"
+  | "div_1d_old"
+  | "div_1e_old"
+  | "div_2a_new"
+  | "div_2b_new"
+  | "div_2c_new"
+  | "div_2d_new"
+  | "div_2e_new";
+export interface A2OJProblemSetInterface {
+  id: A2OJProblemSetIds;
+  title: string;
+  problem_ids: string[];
+}
+
+export const A2OJProblems: Record<A2OJProblemSetIds, A2OJProblemSetInterface> =
+  {
+    div_2a_old: {
+      id: "div_2a_old",
+      title: "Division 2A (Old)",
+      problem_ids: DIV_2A,
+    },
+    div_2b_old: {
+      id: "div_2b_old",
+      title: "Division 2B (Old)",
+      problem_ids: DIV_2B,
+    },
+    div_2c_old: {
+      id: "div_2c_old",
+      title: "Division 2C (Old)",
+      problem_ids: DIV_2C,
+    },
+    div_2d_old: {
+      id: "div_2d_old",
+      title: "Division 2D (Old)",
+      problem_ids: DIV_2D,
+    },
+    div_2e_old: {
+      id: "div_2e_old",
+      title: "Division 2E (Old)",
+      problem_ids: DIV_2E,
+    },
+    div_1d_old: {
+      id: "div_1d_old",
+      title: "Division 1D (Old)",
+      problem_ids: DIV_1D,
+    },
+    div_1e_old: {
+      id: "div_1e_old",
+      title: "Division 1E (Old)",
+      problem_ids: DIV_1E,
+    },
+    div_2a_new: {
+      id: "div_2a_new",
+      title: "Division 2A (Updated)",
+      problem_ids: DIV_2A_NEW,
+    },
+    div_2b_new: {
+      id: "div_2b_new",
+      title: "Division 2B (Updated)",
+      problem_ids: DIV_2B_NEW,
+    },
+    div_2c_new: {
+      id: "div_2c_new",
+      title: "Division 2C (Updated)",
+      problem_ids: DIV_2C_NEW,
+    },
+    div_2d_new: {
+      id: "div_2d_new",
+      title: "Division 2D (Updated)",
+      problem_ids: DIV_2D_NEW,
+    },
+    div_2e_new: {
+      id: "div_2e_new",
+      title: "Division 2E (Updated)",
+      problem_ids: DIV_2E_NEW,
+    },
+  };
+
 export const STRIVER_CP_LIST: Array<[string, string[]]> = [
   [
     "Implementation / Constructive",

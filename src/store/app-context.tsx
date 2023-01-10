@@ -8,44 +8,61 @@ import {
   useState,
 } from "react";
 import { MyProblem } from "../common/types";
-import { getAllProblems, getProblemsSolvedByUser } from "../common/utils";
+import {
+  checkUserHandle,
+  getAllProblems,
+  getProblemsSolvedByUser,
+} from "../common/utils";
 
 export interface AppContextInterface {
+  handle: string;
   problems: Record<string, MyProblem>;
   usersProblems: {
     solved: Set<string>;
   };
   theme: PaletteMode;
   dataLoaded: boolean;
+  isUserValid: boolean;
+  updateContext: React.Dispatch<React.SetStateAction<AppContextInterface>>;
 }
 
 const defaultCtx: AppContextInterface = {
+  handle: localStorage.getItem("CF_HANDLE") || "",
+  // handle: "",
   problems: {},
   usersProblems: { solved: new Set<string>() },
   theme: "dark",
   dataLoaded: false,
+  isUserValid: false,
+  updateContext: () => {},
 };
 
 export const AppCtx = createContext<AppContextInterface>(defaultCtx);
 
 export const AppContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState] = useState<AppContextInterface>(defaultCtx);
-  const [userHandle, setUserHandle] = useState("JohnnyTest");
   useEffect(() => {
     const newCtx: AppContextInterface = defaultCtx;
-    Promise.all([getAllProblems(), getProblemsSolvedByUser(userHandle)]).then(
-      ([problems, problemsByUser]) => {
-        for (const problem of problems) {
-          newCtx.problems[problem.id] = problem;
-        } // for loop ends
-        newCtx.usersProblems.solved = problemsByUser;
-        setState(function (oldState) {
-          return { ...oldState, ...newCtx, dataLoaded: true };
-        });
-      }
-    );
-  }, [userHandle]);
-  return <AppCtx.Provider value={state}>{children}</AppCtx.Provider>;
+    Promise.all([
+      getAllProblems(),
+      getProblemsSolvedByUser(state.handle),
+      checkUserHandle(state.handle),
+    ]).then(([myproblems, user_problems, userValid]) => {
+      for (const problem of myproblems) newCtx.problems[problem.id] = problem;
+      newCtx.dataLoaded = true;
+      newCtx.isUserValid = userValid;
+      newCtx.usersProblems.solved = user_problems;
+      setState(function (oldState) {
+        return { ...oldState, ...newCtx, updateContext: setState };
+      });
+    });
+  }, [setState]);
+
+  return (
+    <AppCtx.Provider value={{ ...state, updateContext: setState }}>
+      {children}
+    </AppCtx.Provider>
+  );
 };
 
 export function useAppContext() {

@@ -41,7 +41,9 @@ const A2OJ_TableRow: React.FC<RowProps> = (props) => {
 export const A2OJ_Table: React.FC<Props> = ({ problem_ids }) => {
   const ctx = useAppContext();
 
-  return (
+  return !ctx.dataLoaded ? (
+    <p>Loading...</p>
+  ) : (
     <TableContainer>
       <Table size="small">
         <TableHead>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Problem, ProblemStatistics, Submission } from "./cf_types";
+import { Problem, ProblemStatistics, Submission, User } from "./cf_types";
 import { MyProblem, MyProblemLevel } from "./types";
 
 const baseUrl = "https://codeforces.com/api";
@@ -32,21 +32,43 @@ export async function getProblemsSolvedByUser(
     result?: Submission[];
     comment?: string;
   }
-  const response = await axiosInstance.get<ProblemsByUser>("user.status", {
-    params: {
-      handle: userHandle,
-      // from: 1,
-      // count: 10,
-    },
-  });
-  const data = response.data;
-  if (!data.result) return new Set();
+  try {
+    const response = await axiosInstance.get<ProblemsByUser>("user.status", {
+      params: {
+        handle: userHandle,
+        // from: 1,
+        // count: 10,
+      },
+    });
+    const data = response.data;
+    if (!data.result) return new Set(); // It will never happend actually
 
-  return new Set(
-    data.result
-      .filter((submission) => submission.verdict === "OK")
-      .map(CFSubmission2ProblemId)
-  );
+    return new Set(
+      data.result
+        .filter((submission) => submission.verdict === "OK")
+        .map(CFSubmission2ProblemId)
+    );
+  } catch (error) {
+    return new Set();
+  }
+}
+
+export async function checkUserHandle(handle: string): Promise<boolean> {
+  interface UserResponse {
+    status: string;
+    result?: User[];
+    comment?: string;
+  }
+  try {
+    const response = await axiosInstance.get<UserResponse>("user.info", {
+      params: {
+        handles: handle,
+      },
+    });
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
 
 function getProblemLevelFromProblemIndex(index: string): MyProblemLevel {
