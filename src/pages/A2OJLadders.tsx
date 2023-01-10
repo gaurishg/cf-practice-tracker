@@ -1,5 +1,7 @@
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import {
   Grid,
+  Tab,
   Table,
   TableBody,
   TableCell,
@@ -8,6 +10,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useAppContext } from "../store/app-context";
 import { A2OJProblems, A2OJProblemSetInterface } from "../store/problem_lists";
@@ -66,6 +69,10 @@ const A2OJTableSummary: React.FC<A2OJTableSummaryProps> = ({
 };
 
 export const A2OJLadders: React.FC = () => {
+  const [tabValue, setTabValue] = useState("1");
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    setTabValue(newValue);
+  };
   const A2OJProblemSets: {
     caption: string;
     rows: A2OJProblemSetInterface[];
@@ -95,10 +102,20 @@ export const A2OJLadders: React.FC = () => {
   ];
   return (
     <>
-      {A2OJProblemSets.map((value, index) => (
-        <A2OJTableSummary key={index} {...value} />
-      ))}
-      {/* <A2OJTableSummary caption="Sample" rows={[A2OJProblems["div_2a_old"]]} /> */}
+      <TabContext value={tabValue}>
+        <TabList onChange={handleTabChange} variant="fullWidth">
+          {A2OJProblemSets.map((value, index) => {
+            return <Tab key={index} label={value.caption} value={`${index}`} />;
+          })}
+        </TabList>
+        {A2OJProblemSets.map((value, index) => {
+          return (
+            <TabPanel key={index} value={`${index}`}>
+              <A2OJTableSummary {...value} />
+            </TabPanel>
+          );
+        })}
+      </TabContext>
       <Outlet></Outlet>
     </>
   );
