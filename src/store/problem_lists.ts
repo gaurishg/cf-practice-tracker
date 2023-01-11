@@ -4612,7 +4612,30 @@ export type A2OJProblemSetIds =
   | "div_2b_new"
   | "div_2c_new"
   | "div_2d_new"
-  | "div_2e_new";
+  | "div_2e_new"
+  | "rating_le_1300"
+  | "rating_le_1399"
+  | "rating_le_1499"
+  | "rating_le_1599"
+  | "rating_le_1699"
+  | "rating_le_1799"
+  | "rating_le_1899"
+  | "rating_le_1999"
+  | "rating_le_2099"
+  | "rating_le_2199"
+  | "rating_ge_2200"
+  | "rating_le_1300_extra"
+  | "rating_le_1399_extra"
+  | "rating_le_1499_extra"
+  | "rating_le_1599_extra"
+  | "rating_le_1699_extra"
+  | "rating_le_1799_extra"
+  | "rating_le_1899_extra"
+  | "rating_le_1999_extra"
+  | "rating_le_2099_extra"
+  | "rating_le_2199_extra"
+  | "rating_ge_2200_extra";
+
 export interface A2OJProblemSetInterface {
   id: A2OJProblemSetIds;
   title: string;
@@ -4680,6 +4703,117 @@ export const A2OJProblems: Record<A2OJProblemSetIds, A2OJProblemSetInterface> =
       id: "div_2e_new",
       title: "Division 2E (Updated)",
       problem_ids: DIV_2E_NEW,
+    },
+    rating_le_1300: {
+      id: "rating_le_1300",
+      title: "Rating <= 1300",
+      problem_ids: RATING_LE_1300,
+    },
+    rating_le_1399: {
+      id: "rating_le_1399",
+      title: "1300 <= Rating <= 1399",
+      problem_ids: RATING_LE_1399,
+    },
+    rating_le_1499: {
+      id: "rating_le_1499",
+      title: "1400 <= Rating <= 1499",
+      problem_ids: RATING_LE_1499,
+    },
+    rating_le_1599: {
+      id: "rating_le_1599",
+      title: "1500 <= Rating <= 1599",
+      problem_ids: RATING_LE_1599,
+    },
+    rating_le_1699: {
+      id: "rating_le_1699",
+      title: "1600 <= Rating <= 1699",
+      problem_ids: RATING_LE_1699,
+    },
+    rating_le_1799: {
+      id: "rating_le_1799",
+      title: "1700 <= Rating <= 1799",
+      problem_ids: RATING_LE_1799,
+    },
+    rating_le_1899: {
+      id: "rating_le_1899",
+      title: "1800 <= Rating <= 1899",
+      problem_ids: RATING_LE_1899,
+    },
+    rating_le_1999: {
+      id: "rating_le_1999",
+      title: "1900 <= Rating <= 1999",
+      problem_ids: RATING_LE_1999,
+    },
+    rating_le_2099: {
+      id: "rating_le_2099",
+      title: "2000 <= Rating <= 2099",
+      problem_ids: RATING_LE_2099,
+    },
+    rating_le_2199: {
+      id: "rating_le_2199",
+      title: "2100 <= Rating <= 2199",
+      problem_ids: RATING_LE_2199,
+    },
+    rating_ge_2200: {
+      id: "rating_ge_2200",
+      title: "Rating >= 2200",
+      problem_ids: RATING_GE_2200,
+    },
+
+    rating_le_1300_extra: {
+      id: "rating_le_1300_extra",
+      title: "Rating <= 1300",
+      problem_ids: RATING_LE_1300_EXTRA,
+    },
+    rating_le_1399_extra: {
+      id: "rating_le_1399_extra",
+      title: "1300 <= Rating <= 1399",
+      problem_ids: RATING_LE_1399_EXTRA,
+    },
+    rating_le_1499_extra: {
+      id: "rating_le_1499_extra",
+      title: "1400 <= Rating <= 1499",
+      problem_ids: RATING_LE_1499_EXTRA,
+    },
+    rating_le_1599_extra: {
+      id: "rating_le_1599_extra",
+      title: "1500 <= Rating <= 1599",
+      problem_ids: RATING_LE_1599_EXTRA,
+    },
+    rating_le_1699_extra: {
+      id: "rating_le_1699_extra",
+      title: "1600 <= Rating <= 1699",
+      problem_ids: RATING_LE_1699_EXTRA,
+    },
+    rating_le_1799_extra: {
+      id: "rating_le_1799_extra",
+      title: "1700 <= Rating <= 1799",
+      problem_ids: RATING_LE_1799_EXTRA,
+    },
+    rating_le_1899_extra: {
+      id: "rating_le_1899_extra",
+      title: "1800 <= Rating <= 1899",
+      problem_ids: RATING_LE_1899_EXTRA,
+    },
+    rating_le_1999_extra: {
+      id: "rating_le_1999_extra",
+      title: "1900 <= Rating <= 1999",
+      problem_ids: RATING_LE_1999_EXTRA,
+    },
+    rating_le_2099_extra: {
+      id: "rating_le_2099_extra",
+      title: "2000 <= Rating <= 2099",
+      problem_ids: RATING_LE_2099_EXTRA,
+    },
+    rating_le_2199_extra: {
+      id: "rating_le_2199_extra",
+      title: "2100 <= Rating <= 2199",
+      problem_ids: RATING_LE_2199_EXTRA,
+    },
+    rating_ge_2200_extra: {
+      id: "rating_ge_2200_extra",
+      title: "Rating >= 2200",
+      problem_ids: RATING_GE_2200_EXTRA,
     },
   };
 
