@@ -87,6 +87,8 @@ function getProblemLevelFromProblemIndex(index: string): MyProblemLevel {
 function CFProblem2MyProblem(cf_problem: Problem): MyProblem {
   return {
     id: CFProblem2ProblemId(cf_problem),
+    constestId: cf_problem.contestId || 0,
+    index: cf_problem.index,
     name: cf_problem.name,
     tags: new Set(cf_problem.tags || []),
     points: cf_problem.points,

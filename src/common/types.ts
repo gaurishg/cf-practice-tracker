@@ -1,5 +1,7 @@
 export interface MyProblem {
   id: string;
+  constestId: number;
+  index: string;
   name: string;
   level: MyProblemLevel;
   points?: number;
