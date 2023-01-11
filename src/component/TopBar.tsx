@@ -2,6 +2,7 @@ import {
   AppBar,
   Box,
   FormControlLabel,
+  Stack,
   styled,
   Switch,
   TextField,
@@ -11,7 +12,8 @@ import { useState } from "react";
 import { checkUserHandle, getProblemsSolvedByUser } from "../common/utils";
 import { useAppContext } from "../store/app-context";
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+// This code has been directly copied from the MUI docs
+const ThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
   padding: 7,
@@ -88,32 +90,35 @@ export const TopBar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Box flexGrow={1}></Box>
-        <TextField
-          placeholder="codeforces handle"
-          value={cfHandle}
-          onChange={onHandleChange}
-          onBlur={onHandleSet}
-          error={cfHandle.length > 0 && !ctx.isUserValid}
-          variant="standard"
-        />
-        <FormControlLabel
-          label={ctx.theme}
-          control={
-            <MaterialUISwitch
-              defaultChecked
-              name="theme"
-              onChange={(e) =>
-                ctx.updateContext(function (oldCtx) {
-                  return {
-                    ...oldCtx,
-                    theme: e.target.checked ? "dark" : "light",
-                  };
-                })
-              }
-            />
-          }
-        />
+        <Stack width="100%" direction="row" spacing={4}>
+          <Box flexGrow={1}></Box>
+          <TextField
+            margin="dense"
+            placeholder="codeforces handle"
+            value={cfHandle}
+            onChange={onHandleChange}
+            onBlur={onHandleSet}
+            error={cfHandle.length > 0 && !ctx.isUserValid}
+            variant="standard"
+          />
+          <FormControlLabel
+            label={ctx.theme}
+            control={
+              <ThemeSwitch
+                defaultChecked
+                name="theme"
+                onChange={(e) =>
+                  ctx.updateContext(function (oldCtx) {
+                    return {
+                      ...oldCtx,
+                      theme: e.target.checked ? "dark" : "light",
+                    };
+                  })
+                }
+              />
+            }
+          />
+        </Stack>
       </Toolbar>
     </AppBar>
   );
