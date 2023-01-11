@@ -98,7 +98,7 @@ function CFProblem2MyProblem(cf_problem: Problem): MyProblem {
 }
 
 function CFProblem2ProblemId(cf_problem: Problem): string {
-  return `${cf_problem.contestId || "dummy"}${cf_problem.index}`;
+  return `${cf_problem.contestId || 0}${cf_problem.index}`;
 }
 
 function CFSubmission2ProblemId(submission: Submission): string {
