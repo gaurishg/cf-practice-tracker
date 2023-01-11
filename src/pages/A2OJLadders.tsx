@@ -60,6 +60,22 @@ const A2OJTableSummary: React.FC<A2OJTableSummaryProps> = ({
                   </TableRow>
                 );
               })}
+              <TableRow>
+                <TableCell>Total</TableCell>
+                <TableCell></TableCell>
+                <TableCell>
+                  {rows
+                    .map((problem_set) =>
+                      getSolvedCount(problem_set.problem_ids)
+                    )
+                    .reduce((prev, curr) => prev + curr, 0)}
+                </TableCell>
+                <TableCell>
+                  {rows
+                    .map((problem_set) => problem_set.problem_ids.length)
+                    .reduce((acc, num) => acc + num, 0)}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
@@ -97,6 +113,38 @@ export const A2OJLadders: React.FC = () => {
         A2OJProblems["div_2c_new"],
         A2OJProblems["div_2d_new"],
         A2OJProblems["div_2e_new"],
+      ],
+    },
+    {
+      caption: "Rating-wise Ladder",
+      rows: [
+        A2OJProblems["rating_le_1300"],
+        A2OJProblems["rating_le_1399"],
+        A2OJProblems["rating_le_1499"],
+        A2OJProblems["rating_le_1599"],
+        A2OJProblems["rating_le_1699"],
+        A2OJProblems["rating_le_1799"],
+        A2OJProblems["rating_le_1899"],
+        A2OJProblems["rating_le_1999"],
+        A2OJProblems["rating_le_2099"],
+        A2OJProblems["rating_le_2199"],
+        A2OJProblems["rating_ge_2200"],
+      ],
+    },
+    {
+      caption: "Rating-wise (extra) Ladder",
+      rows: [
+        A2OJProblems["rating_le_1300_extra"],
+        A2OJProblems["rating_le_1399_extra"],
+        A2OJProblems["rating_le_1499_extra"],
+        A2OJProblems["rating_le_1599_extra"],
+        A2OJProblems["rating_le_1699_extra"],
+        A2OJProblems["rating_le_1799_extra"],
+        A2OJProblems["rating_le_1899_extra"],
+        A2OJProblems["rating_le_1999_extra"],
+        A2OJProblems["rating_le_2099_extra"],
+        A2OJProblems["rating_le_2199_extra"],
+        A2OJProblems["rating_ge_2200_extra"],
       ],
     },
   ];

@@ -5,6 +5,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Link as MuiLink,
 } from "@mui/material";
 import { MyProblem } from "../common/types";
 import { useAppContext } from "../store/app-context";
@@ -19,7 +20,7 @@ interface RowProps {
 }
 const A2OJ_TableRow: React.FC<RowProps> = (props) => {
   const ctx = useAppContext();
-  const { id, name, points, rating } = props.problem;
+  const { id, name, points, rating, constestId } = props.problem;
   return (
     <TableRow
       hover
@@ -31,7 +32,15 @@ const A2OJ_TableRow: React.FC<RowProps> = (props) => {
     >
       <TableCell>{props.index}</TableCell>
       <TableCell>{id}</TableCell>
-      <TableCell>{name}</TableCell>
+      <TableCell>
+        <MuiLink
+          href={`https://codeforces.com/problemset/problem/${constestId}/${props.problem.index}`}
+          target="_blank"
+          rel="noopener"
+        >
+          {name}
+        </MuiLink>
+      </TableCell>
       <TableCell>{points}</TableCell>
       <TableCell>{rating}</TableCell>
     </TableRow>
