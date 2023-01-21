@@ -10,7 +10,7 @@ function App(): JSX.Element {
     <center>
       <Stack maxWidth={800}>
         <TopBar />
-        <BrowserRouter>
+        <BrowserRouter basename="/cf-practice-tracker">
           <Routes>
             <Route path="/" element={<Navigate to="/a2oj" replace />} />
             <Route path="/a2oj" element={<A2OJLadders />}>
